@@ -1,0 +1,5 @@
+*.m linguist-detectable=false
+*.py linguist-detectable=false
+*.sh linguist-detectable=false
+*.tcl linguist-detectable=false
+*.wrl linguist-detectable=false
