@@ -1,0 +1,16 @@
+% Source: /Users/Lea/Documents/Acoustic levitation/PCB/acoustic_levitation_main.sch
+"% Date: Sunday, 03 June 2018 'amt' 11:00:39"
+% Component count: 66
+Reference,Quantity,Value,Footprint,Manufacturer,Manufacturer part number,Supplier 1,Supplier part number 1,Supplier 2,Supplier part number 2
+"C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12",12,100n,C_0805_HandSoldering,Wurth Electronics Inc.,885012207072,Digi-Key,732-8061-1-ND,,
+J1,1,DE0-Nano-SoC: GPIO 0,Socket_Strip_Straight_2x20_Pitch2.54mm,Samtec Inc.,SSW-120-03-G-D,Digi-Key,SAM11959-ND,,
+J2,1,DE0-Nano-SoC: GPIO 1,Socket_Strip_Straight_2x20_Pitch2.54mm,Samtec Inc.,SSW-120-03-G-D,Digi-Key,SAM11959-ND,,
+J3,1,DE0-Nano-SoC: JP3,Pin_Header_Straight_1x08_Pitch2.54mm,Wurth Electronics Inc.,61300811121,Digi-Key,732-5321-ND,Distrelec,300-93-649
+J4,1,DE0-Nano-SoC: JP2,Pin_Header_Straight_1x10_Pitch2.54mm,Wurth Electronics Inc.,61301011121,Digi-Key,732-2670-ND,Distrelec,300-93-651
+J5,1,DE0-Nano-SoC: JP5[3],Pin_Header_Straight_1x01_Pitch2.54mm,Wurth Electronics Inc.,61300111121,Digi-Key,732-5314-ND,Distrelec,300-93-642
+"J6, J7, J8, J9",4,8-215079-8,TE_8-215079-8,TE Connectivity AMP Connectors,8-215079-8,Digi-Key,A99466CT-ND,,
+J10,1,PJ-102AH,CUI_PJ-102AH,CUI Inc.,PJ-102AH,Digi-Key,CP-102AH-ND,,
+Q1,1,Si3421DV,TSOP-6_2.9x1.5mm_Pitch0.95mm,Vishay Siliconix,SI3421DV-T1-GE3,Digi-Key,SI3421DV-T1-GE3CT-ND,,
+"TR1, TR2, TR3, TR4, TR5, TR6, TR7, TR8, TR9, TR10, TR11, TR12, TR13, TR14, TR15, TR16, TR17, TR18, TR19, TR20, TR21, TR22, TR23, TR24, TR25, TR26, TR27, TR28, TR29, TR30, TR31, TR32, TR33, TR34, TR35, TR36",36,MA40S4S,Murata_MA40S4S_TE_8134-HC-8P2,Murata,MA40S4S,Digi-Key,490-7707-ND,,
+"U1, U2, U3, U4, U5, U6",6,MAX17079,QFN-40-1EP_6x6mm_Pitch0.5mm_HandSoldering,Maxim Integrated,MAX17079GTL+,Digi-Key,MAX17079GTL+-ND,,
+U7,1,TSR2-2450,Traco_TSR2,Traco Power,TSR 2-2450,Mouser,495-TSR2-2450,Distrelec,300-67-301

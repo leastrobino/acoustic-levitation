@@ -1,0 +1,24 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MA40S4S
+D 40kHz, 10mm, Ultrasonic Transducer
+F https://www.murata.com/~/media/webrenewal/products/sensor/ultrasonic/open/datasheet_maopn.pdf
+$ENDCMP
+#
+$CMP MAX17079
+D 4-Level or 2-Level Logic to High-Voltage Level Shifter for TFT LCD TV Display, QFN-40-1EP
+F https://datasheets.maximintegrated.com/en/ds/MAX17079.pdf
+$ENDCMP
+#
+$CMP Si3421DV
+D -30V Vds, -8A Id, P-Channel MOSFET, TSOP-6
+K P-Channel MOSFET
+F http://www.vishay.com/docs/62921/si3421dv.pdf
+$ENDCMP
+#
+$CMP TSR2-2450
+D 6.5-36V Vin, 5V Vout, Step-Down Switching Regulator
+F https://assets.tracopower.com/TSR2/documents/tsr2-datasheet.pdf
+$ENDCMP
+#
+#End Doc Library

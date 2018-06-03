@@ -1,0 +1,8 @@
+% Source: /Users/Lea/Documents/Acoustic levitation/PCB/acoustic_levitation_wing.sch
+"% Date: Sunday, 03 June 2018 'amt' 11:03:05"
+% Component count: 21
+Reference,Quantity,Value,Footprint,Manufacturer,Manufacturer part number,Supplier 1,Supplier part number 1,Supplier 2,Supplier part number 2
+"C1, C2, C3, C4",4,100n,C_0805_HandSoldering,Wurth Electronics Inc.,885012207072,Digi-Key,732-8061-1-ND,,
+J1,1,8-215079-8,TE_8-215079-8,TE Connectivity AMP Connectors,8-215079-8,Digi-Key,A99466CT-ND,,
+"TR1, TR2, TR3, TR4, TR5, TR6, TR7, TR8, TR9, TR10, TR11, TR12, TR13, TR14",14,MA40S4S,Murata_MA40S4S_TE_8134-HC-8P2,Murata,MA40S4S,Digi-Key,490-7707-ND,,
+"U1, U2",2,MAX17079,QFN-40-1EP_6x6mm_Pitch0.5mm_HandSoldering,Maxim Integrated,MAX17079GTL+,Digi-Key,MAX17079GTL+-ND,,

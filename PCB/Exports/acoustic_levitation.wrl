@@ -1,0 +1,85 @@
+#VRML V2.0 utf8
+WorldInfo { title "Acoustic levitation KiCad PCB" }
+Group {
+  children [
+    DEF PCB_Main Transform {
+      translation 0 0 -0.775
+      children Inline { url "acoustic_levitation_main.wrl" }
+    }
+    DEF PCB_Wing_A Transform {
+      rotation 0 0 1 -1.5708
+      children DEF PCB_Wing Group {
+        children [
+          Transform {
+            rotation 1 0 0 0.785398
+            translation 0 35.25 0
+            children Transform {
+              translation 0 14.25 -0.775
+              children Inline { url "acoustic_levitation_wing.wrl" }
+            }
+          }
+          Transform {
+            rotation 1 1 0 0.785398
+            translation -40 40 9.9
+            children Transform {
+              rotation 0 0 1 -0.785398
+              scale 2.54 2.54 2.54
+              children Inline { url "shapes3D/Murata_MA40S4S_TE_8134-HC-8P2.wrl" }
+            }
+          }
+        ]
+      }
+    }
+    DEF PCB_Wing_B Transform {
+      rotation 0 0 1 0
+      children USE PCB_Wing
+    }
+    DEF PCB_Wing_C Transform {
+      rotation 0 0 1 1.5708
+      children USE PCB_Wing
+    }
+    DEF PCB_Wing_D Transform {
+      rotation 0 0 1 3.14159
+      children USE PCB_Wing
+    }
+  ]
+}
+DEF Light DirectionalLight {
+  ambientIntensity 0.5
+  intensity 0
+}
+DEF View_3D_Top Transform {
+  translation 0 0 5
+  rotation 0.5 0.866025 0 1.0472
+  children Viewpoint {
+    description "Az: 60&deg; &nbsp; El: 30&deg;"
+    orientation 0 0 1 1.0472
+    fieldOfView 0.0174533
+    position 0 0 5500
+  }
+}
+DEF View_3D_Bottom Transform {
+  translation 0 0 15
+  rotation -0.866025 -0.5 0 3.92699
+  children Viewpoint {
+    description "Az: -150&deg; &nbsp; El: -135&deg;"
+    orientation 0 0 1 -2.61799
+    fieldOfView 0.0174533
+    position 0 0 6500
+  }
+}
+DEF View_2D_Top Viewpoint {
+  description "Az: 0&deg; &nbsp; El: 90&deg;"
+  orientation 0 0 1 0
+  fieldOfView 0.0174533
+  position 0 0 7000
+}
+DEF View_2D_Bottom Transform {
+  rotation -1 0 0 3.14159
+  children Viewpoint {
+    description "Az: 180&deg; &nbsp; El: -90&deg;"
+    orientation 0 0 1 3.14159
+    fieldOfView 0.0174533
+    position 0 0 7000
+  }
+}
