@@ -19,6 +19,26 @@ Toolpath:
 
 [<img src="docs/flatcam.png" alt="Toolpath in FlatCAM" width="640">](https://leastrobino.github.io/acoustic-levitation/flatcam.png)
 
+## Bill of materials
+
+| Quantity | Manufacturer           | Part number     |
+| :------: | :--------------------- | :-------------- |
+| 1        | CUI Inc.               | PJ-102AH        |
+| 14       | Maxim Integrated       | MAX17079GTL+    |
+| 88       | Murata                 | MA40S4S         |
+| 2        | Samtec Inc.            | SSW-120-03-G-D  |
+| 8        | TE Connectivity        | 8-215079-8      |
+| 8        | TE Connectivity        | 8-215083-8      |
+| 176      | TE Connectivity        | 8134-HC-8P2     |
+| 1        | Traco Power            | TSR 2-2450      |
+| 1        | Vishay Siliconix       | SI3421DV-T1-GE3 |
+| 1        | Wurth Electronics Inc. | 61300111121     |
+| 1        | Wurth Electronics Inc. | 61300811121     |
+| 1        | Wurth Electronics Inc. | 61301011121     |
+| 28       | Wurth Electronics Inc. | 885012207072    |
+
+The PCBs were manufactured by [Eurocircuits](https://www.eurocircuits.com) (class 6D).
+
 ## References
 
 1. A. Marzo, S. A. Seah, B. W. Drinkwater, D. R. Sahoo, B. Long, and S. Subramanian, *Holographic acoustic elements for manipulation of levitated objects*, Nature Communications 6, 8661, 2015.  
