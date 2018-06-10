@@ -2,6 +2,8 @@
 
 An acoustic levitation device designed as a daughterboard for the [DE0-Nano-SoC](http://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=165&No=941) (Terasic Inc.)
 
+[<img src="docs/image1.jpg" width="25%">](https://leastrobino.github.io/acoustic-levitation/image1.jpg)[<img src="docs/image2.jpg" width="25%">](https://leastrobino.github.io/acoustic-levitation/image2.jpg)[<img src="docs/image3.jpg" width="25%">](https://leastrobino.github.io/acoustic-levitation/image3.jpg)[<img src="docs/image4.jpg" width="25%">](https://leastrobino.github.io/acoustic-levitation/image4.jpg)
+
 The piezoelectric transducers signals generation is written in VHDL. The phases computation and G-Code interpreter is written in C and runs on embedded Linux.
 
 ## Demonstration videos
