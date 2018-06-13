@@ -4,7 +4,7 @@ An acoustic levitation device designed as a daughterboard for the [DE0-Nano-SoC]
 
 [<img src="docs/image1.jpg" width="25%">](https://leastrobino.github.io/acoustic-levitation/image1.jpg)[<img src="docs/image2.jpg" width="25%">](https://leastrobino.github.io/acoustic-levitation/image2.jpg)[<img src="docs/image3.jpg" width="25%">](https://leastrobino.github.io/acoustic-levitation/image3.jpg)[<img src="docs/image4.jpg" width="25%">](https://leastrobino.github.io/acoustic-levitation/image4.jpg)
 
-The piezoelectric transducers signals generation is written in VHDL. The phases computation and G-Code interpreter is written in C and runs on embedded Linux.
+The piezoelectric transducers signals generation is written in VHDL. The phases computation and the G-Code interpreter are written in C and run on embedded Linux. The device controls 88 channels at 40 kHz with a phase resolution of π/625.
 
 ## Demonstration videos
 
