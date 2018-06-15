@@ -1,0 +1,9 @@
+#!/bin/sh
+cd /sys/class/leds/hps_led0 &&
+echo 0 > brightness &&
+for i in $(seq 1 ${1:-5}); do
+  echo 1 > brightness
+  sleep ${2:-.1}
+  echo 0 > brightness
+  sleep ${3:-${2:-.1}}
+done
