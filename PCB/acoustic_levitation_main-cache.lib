@@ -1,79 +1,20 @@
-EESchema-LIBRARY Version 2.3
+EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# +12V
+# Connector_Barrel_Jack_Switch
 #
-DEF +12V #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "+12V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +12V 1 0 0 0 U 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# +3V3
-#
-DEF +3V3 #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "+3V3" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-ALIAS +3.3V
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +3V3 1 0 0 0 U 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# +5V
-#
-DEF +5V #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "+5V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +5V 1 0 0 0 U 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# +VDC
-#
-DEF +VDC #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -100 50 H I C CNN
-F1 "+VDC" 0 250 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-C 0 125 75 0 1 10 N
-P 2 0 1 20 -45 125 45 125 N
-P 2 0 1 0 0 0 0 50 N
-P 2 0 1 20 0 80 0 170 N
-X +VDC 1 0 0 0 U 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# Barrel_Jack
-#
-DEF Barrel_Jack J 0 40 Y Y 1 F N
+DEF Connector_Barrel_Jack_Switch J 0 20 Y N 1 F N
 F0 "J" 0 210 50 H V C CNN
-F1 "Barrel_Jack" 0 -175 50 H V C CNN
+F1 "Connector_Barrel_Jack_Switch" 0 -200 50 H V C CNN
 F2 "" 50 -40 50 H I C CNN
 F3 "" 50 -40 50 H I C CNN
-ALIAS Jack-DC
+$FPLIST
+ BarrelJack*
+$ENDFPLIST
 DRAW
 A -130 100 25 901 -901 0 1 10 F -130 125 -130 75
 A -130 100 25 901 -901 0 1 10 N -130 125 -130 75
+S -200 150 200 -150 0 1 10 f
 S 145 125 -130 75 0 1 10 F
 P 2 0 1 10 50 -90 75 -65 N
 P 2 0 1 10 200 100 150 100 N
@@ -85,38 +26,15 @@ X ~ 3 300 0 100 L 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# C
+# Connector_Generic_Conn_01x01
 #
-DEF C C 0 10 N Y 1 F N
-F0 "C" 25 100 50 H V L CNN
-F1 "C" 25 -100 50 H V L CNN
-F2 "" 38 -150 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-$FPLIST
- C_*
-$ENDFPLIST
-DRAW
-P 2 0 1 20 -80 -30 80 -30 N
-P 2 0 1 20 -80 30 80 30 N
-X ~ 1 0 150 110 D 50 50 1 1 P
-X ~ 2 0 -150 110 U 50 50 1 1 P
-ENDDRAW
-ENDDEF
-#
-# Conn_01x01
-#
-DEF Conn_01x01 J 0 40 Y N 1 F N
+DEF Connector_Generic_Conn_01x01 J 0 40 Y N 1 F N
 F0 "J" 0 100 50 H V C CNN
-F1 "Conn_01x01" 0 -100 50 H V C CNN
+F1 "Connector_Generic_Conn_01x01" 0 -100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
- Connector*:*_??x*mm*
- Connector*:*1x??x*mm*
- Pin?Header?Straight?1X*
- Pin?Header?Angled?1X*
- Socket?Strip?Straight?1X*
- Socket?Strip?Angled?1X*
+ Connector*:*
 $ENDFPLIST
 DRAW
 S -50 5 0 -5 1 1 6 N
@@ -125,20 +43,15 @@ X Pin_1 1 -200 0 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Conn_01x08
+# Connector_Generic_Conn_01x08
 #
-DEF Conn_01x08 J 0 40 Y N 1 F N
+DEF Connector_Generic_Conn_01x08 J 0 40 Y N 1 F N
 F0 "J" 0 400 50 H V C CNN
-F1 "Conn_01x08" 0 -500 50 H V C CNN
+F1 "Connector_Generic_Conn_01x08" 0 -500 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
- Connector*:*_??x*mm*
- Connector*:*1x??x*mm*
- Pin?Header?Straight?1X*
- Pin?Header?Angled?1X*
- Socket?Strip?Straight?1X*
- Socket?Strip?Angled?1X*
+ Connector*:*_1x??_*
 $ENDFPLIST
 DRAW
 S -50 -395 0 -405 1 1 6 N
@@ -161,20 +74,15 @@ X Pin_8 8 -200 -400 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Conn_01x10
+# Connector_Generic_Conn_01x10
 #
-DEF Conn_01x10 J 0 40 Y N 1 F N
+DEF Connector_Generic_Conn_01x10 J 0 40 Y N 1 F N
 F0 "J" 0 500 50 H V C CNN
-F1 "Conn_01x10" 0 -600 50 H V C CNN
+F1 "Connector_Generic_Conn_01x10" 0 -600 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
- Connector*:*_??x*mm*
- Connector*:*1x??x*mm*
- Pin?Header?Straight?1X*
- Pin?Header?Angled?1X*
- Socket?Strip?Straight?1X*
- Socket?Strip?Angled?1X*
+ Connector*:*_1x??_*
 $ENDFPLIST
 DRAW
 S -50 -495 0 -505 1 1 6 N
@@ -189,6 +97,7 @@ S -50 305 0 295 1 1 6 N
 S -50 405 0 395 1 1 6 N
 S -50 450 50 -550 1 1 10 f
 X Pin_1 1 -200 400 150 R 50 50 1 1 P
+X Pin_10 10 -200 -500 150 R 50 50 1 1 P
 X Pin_2 2 -200 300 150 R 50 50 1 1 P
 X Pin_3 3 -200 200 150 R 50 50 1 1 P
 X Pin_4 4 -200 100 150 R 50 50 1 1 P
@@ -197,24 +106,18 @@ X Pin_6 6 -200 -100 150 R 50 50 1 1 P
 X Pin_7 7 -200 -200 150 R 50 50 1 1 P
 X Pin_8 8 -200 -300 150 R 50 50 1 1 P
 X Pin_9 9 -200 -400 150 R 50 50 1 1 P
-X Pin_10 10 -200 -500 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Conn_02x09_Odd_Even
+# Connector_Generic_Conn_02x09_Odd_Even
 #
-DEF Conn_02x09_Odd_Even J 0 40 Y N 1 F N
+DEF Connector_Generic_Conn_02x09_Odd_Even J 0 40 Y N 1 F N
 F0 "J" 50 500 50 H V C CNN
-F1 "Conn_02x09_Odd_Even" 50 -500 50 H V C CNN
+F1 "Connector_Generic_Conn_02x09_Odd_Even" 50 -500 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
- Connector*:*2x??x*mm*
- Connector*:*2x???Pitch*
- Pin_Header_Straight_2X*
- Pin_Header_Angled_2X*
- Socket_Strip_Straight_2X*
- Socket_Strip_Angled_2X*
+ Connector*:*_2x??_*
 $ENDFPLIST
 DRAW
 S -50 -395 0 -405 1 1 6 N
@@ -237,14 +140,6 @@ S 150 205 100 195 1 1 6 N
 S 150 305 100 295 1 1 6 N
 S 150 405 100 395 1 1 6 N
 X Pin_1 1 -200 400 150 R 50 50 1 1 P
-X Pin_2 2 300 400 150 L 50 50 1 1 P
-X Pin_3 3 -200 300 150 R 50 50 1 1 P
-X Pin_4 4 300 300 150 L 50 50 1 1 P
-X Pin_5 5 -200 200 150 R 50 50 1 1 P
-X Pin_6 6 300 200 150 L 50 50 1 1 P
-X Pin_7 7 -200 100 150 R 50 50 1 1 P
-X Pin_8 8 300 100 150 L 50 50 1 1 P
-X Pin_9 9 -200 0 150 R 50 50 1 1 P
 X Pin_10 10 300 0 150 L 50 50 1 1 P
 X Pin_11 11 -200 -100 150 R 50 50 1 1 P
 X Pin_12 12 300 -100 150 L 50 50 1 1 P
@@ -254,23 +149,26 @@ X Pin_15 15 -200 -300 150 R 50 50 1 1 P
 X Pin_16 16 300 -300 150 L 50 50 1 1 P
 X Pin_17 17 -200 -400 150 R 50 50 1 1 P
 X Pin_18 18 300 -400 150 L 50 50 1 1 P
+X Pin_2 2 300 400 150 L 50 50 1 1 P
+X Pin_3 3 -200 300 150 R 50 50 1 1 P
+X Pin_4 4 300 300 150 L 50 50 1 1 P
+X Pin_5 5 -200 200 150 R 50 50 1 1 P
+X Pin_6 6 300 200 150 L 50 50 1 1 P
+X Pin_7 7 -200 100 150 R 50 50 1 1 P
+X Pin_8 8 300 100 150 L 50 50 1 1 P
+X Pin_9 9 -200 0 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Conn_02x20_Odd_Even
+# Connector_Generic_Conn_02x20_Odd_Even
 #
-DEF Conn_02x20_Odd_Even J 0 40 Y N 1 F N
+DEF Connector_Generic_Conn_02x20_Odd_Even J 0 40 Y N 1 F N
 F0 "J" 50 1000 50 H V C CNN
-F1 "Conn_02x20_Odd_Even" 50 -1100 50 H V C CNN
+F1 "Connector_Generic_Conn_02x20_Odd_Even" 50 -1100 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
- Connector*:*2x??x*mm*
- Connector*:*2x???Pitch*
- Pin_Header_Straight_2X*
- Pin_Header_Angled_2X*
- Socket_Strip_Straight_2X*
- Socket_Strip_Angled_2X*
+ Connector*:*_2x??_*
 $ENDFPLIST
 DRAW
 S -50 -995 0 -1005 1 1 6 N
@@ -315,72 +213,77 @@ S 150 705 100 695 1 1 6 N
 S 150 805 100 795 1 1 6 N
 S 150 905 100 895 1 1 6 N
 X Pin_1 1 -200 900 150 R 50 50 1 1 P
+X Pin_10 10 300 500 150 L 50 50 1 1 P
+X Pin_11 11 -200 400 150 R 50 50 1 1 P
+X Pin_12 12 300 400 150 L 50 50 1 1 P
+X Pin_13 13 -200 300 150 R 50 50 1 1 P
+X Pin_14 14 300 300 150 L 50 50 1 1 P
+X Pin_15 15 -200 200 150 R 50 50 1 1 P
+X Pin_16 16 300 200 150 L 50 50 1 1 P
+X Pin_17 17 -200 100 150 R 50 50 1 1 P
+X Pin_18 18 300 100 150 L 50 50 1 1 P
+X Pin_19 19 -200 0 150 R 50 50 1 1 P
 X Pin_2 2 300 900 150 L 50 50 1 1 P
+X Pin_20 20 300 0 150 L 50 50 1 1 P
+X Pin_21 21 -200 -100 150 R 50 50 1 1 P
+X Pin_22 22 300 -100 150 L 50 50 1 1 P
+X Pin_23 23 -200 -200 150 R 50 50 1 1 P
+X Pin_24 24 300 -200 150 L 50 50 1 1 P
+X Pin_25 25 -200 -300 150 R 50 50 1 1 P
+X Pin_26 26 300 -300 150 L 50 50 1 1 P
+X Pin_27 27 -200 -400 150 R 50 50 1 1 P
+X Pin_28 28 300 -400 150 L 50 50 1 1 P
+X Pin_29 29 -200 -500 150 R 50 50 1 1 P
 X Pin_3 3 -200 800 150 R 50 50 1 1 P
+X Pin_30 30 300 -500 150 L 50 50 1 1 P
+X Pin_31 31 -200 -600 150 R 50 50 1 1 P
+X Pin_32 32 300 -600 150 L 50 50 1 1 P
+X Pin_33 33 -200 -700 150 R 50 50 1 1 P
+X Pin_34 34 300 -700 150 L 50 50 1 1 P
+X Pin_35 35 -200 -800 150 R 50 50 1 1 P
+X Pin_36 36 300 -800 150 L 50 50 1 1 P
+X Pin_37 37 -200 -900 150 R 50 50 1 1 P
+X Pin_38 38 300 -900 150 L 50 50 1 1 P
+X Pin_39 39 -200 -1000 150 R 50 50 1 1 P
 X Pin_4 4 300 800 150 L 50 50 1 1 P
+X Pin_40 40 300 -1000 150 L 50 50 1 1 P
 X Pin_5 5 -200 700 150 R 50 50 1 1 P
 X Pin_6 6 300 700 150 L 50 50 1 1 P
 X Pin_7 7 -200 600 150 R 50 50 1 1 P
 X Pin_8 8 300 600 150 L 50 50 1 1 P
 X Pin_9 9 -200 500 150 R 50 50 1 1 P
-X Pin_10 10 300 500 150 L 50 50 1 1 P
-X Pin_20 20 300 0 150 L 50 50 1 1 P
-X Pin_30 30 300 -500 150 L 50 50 1 1 P
-X Pin_40 40 300 -1000 150 L 50 50 1 1 P
-X Pin_11 11 -200 400 150 R 50 50 1 1 P
-X Pin_21 21 -200 -100 150 R 50 50 1 1 P
-X Pin_31 31 -200 -600 150 R 50 50 1 1 P
-X Pin_12 12 300 400 150 L 50 50 1 1 P
-X Pin_22 22 300 -100 150 L 50 50 1 1 P
-X Pin_32 32 300 -600 150 L 50 50 1 1 P
-X Pin_13 13 -200 300 150 R 50 50 1 1 P
-X Pin_23 23 -200 -200 150 R 50 50 1 1 P
-X Pin_33 33 -200 -700 150 R 50 50 1 1 P
-X Pin_14 14 300 300 150 L 50 50 1 1 P
-X Pin_24 24 300 -200 150 L 50 50 1 1 P
-X Pin_34 34 300 -700 150 L 50 50 1 1 P
-X Pin_15 15 -200 200 150 R 50 50 1 1 P
-X Pin_25 25 -200 -300 150 R 50 50 1 1 P
-X Pin_35 35 -200 -800 150 R 50 50 1 1 P
-X Pin_16 16 300 200 150 L 50 50 1 1 P
-X Pin_26 26 300 -300 150 L 50 50 1 1 P
-X Pin_36 36 300 -800 150 L 50 50 1 1 P
-X Pin_17 17 -200 100 150 R 50 50 1 1 P
-X Pin_27 27 -200 -400 150 R 50 50 1 1 P
-X Pin_37 37 -200 -900 150 R 50 50 1 1 P
-X Pin_18 18 300 100 150 L 50 50 1 1 P
-X Pin_28 28 300 -400 150 L 50 50 1 1 P
-X Pin_38 38 300 -900 150 L 50 50 1 1 P
-X Pin_19 19 -200 0 150 R 50 50 1 1 P
-X Pin_29 29 -200 -500 150 R 50 50 1 1 P
-X Pin_39 39 -200 -1000 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# GND
+# Device_C
 #
-DEF GND #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -250 50 H I C CNN
-F1 "GND" 0 -150 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
+DEF Device_C C 0 10 N Y 1 F N
+F0 "C" 25 100 50 H V L CNN
+F1 "Device_C" 25 -100 50 H V L CNN
+F2 "" 38 -150 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
+$FPLIST
+ C_*
+$ENDFPLIST
 DRAW
-P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
-X GND 1 0 0 0 D 50 50 1 1 W N
+P 2 0 1 20 -80 -30 80 -30 N
+P 2 0 1 20 -80 30 80 30 N
+X ~ 1 0 150 110 D 50 50 1 1 P
+X ~ 2 0 -150 110 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# MA40S4S
+# library_MA40S4S
 #
-DEF MA40S4S TR 0 1 N N 1 F N
+DEF library_MA40S4S TR 0 1 N N 1 F N
 F0 "TR" 100 100 50 H V L CNN
-F1 "MA40S4S" 100 -100 50 H V L CNN
+F1 "library_MA40S4S" 100 -100 50 H V L CNN
 F2 "footprints:Murata_MA40S4S_TE_8134-HC-8P2" 100 -200 50 H I L CNN
 F3 "https://www.murata.com/~/media/webrenewal/products/sensor/ultrasonic/open/datasheet_maopn.pdf" 100 -300 50 H I L CNN
-F4 "490-7707-ND" 500 -500 50 H I L CNN "Supplier1PartNumber"
-F5 "Digi-Key" 100 -500 50 H I L CNN "Supplier1"
-F6 "MA40S4S" 400 -400 50 H I L CNN "ManufacturerPartNumber"
-F7 "Murata" 100 -400 50 H I L CNN "Manufacturer"
+F4 "Murata" 100 -400 50 H I L CNN "Manufacturer"
+F5 "MA40S4S" 400 -400 50 H I L CNN "ManufacturerPartNumber"
+F6 "Digi-Key" 100 -500 50 H I L CNN "Supplier1"
+F7 "490-7707-ND" 500 -500 50 H I L CNN "Supplier1PartNumber"
 DRAW
 C 0 0 100 0 1 10 N
 S -50 20 50 -20 0 1 10 N
@@ -395,77 +298,77 @@ X + 2 0 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# MAX17079
+# library_MAX17079
 #
-DEF MAX17079 U 0 40 Y Y 1 F N
+DEF library_MAX17079 U 0 40 Y Y 1 F N
 F0 "U" 550 850 60 H V L CNN
-F1 "MAX17079" 550 -850 60 H V L CNN
-F2 "Housings_DFN_QFN:QFN-40-1EP_6x6mm_Pitch0.5mm" 550 -950 50 H I L CNN
+F1 "library_MAX17079" 550 -850 60 H V L CNN
+F2 "footprints:QFN-40-1EP_6x6mm_Pitch0.5mm" 550 -950 50 H I L CNN
 F3 "https://datasheets.maximintegrated.com/en/ds/MAX17079.pdf" 550 -1050 50 H I L CNN
-F4 "Digi-Key" 550 -1250 50 H I L CNN "Supplier1"
+F4 "Maxim Integrated" 550 -1150 50 H I L CNN "Manufacturer"
 F5 "MAX17079GTL+" 1250 -1150 50 H I L CNN "ManufacturerPartNumber"
-F6 "MAX17079GTL+-ND" 950 -1250 50 H I L CNN "Supplier1PartNumber"
-F7 "Maxim Integrated" 550 -1150 50 H I L CNN "Manufacturer"
+F6 "Digi-Key" 550 -1250 50 H I L CNN "Supplier1"
+F7 "MAX17079GTL+-ND" 950 -1250 50 H I L CNN "Supplier1PartNumber"
 DRAW
-T 0 0 -300 30 0 0 0 CH:~0~=~four~levels,~1~=~two~levels Normal 0 C C
-T 0 0 -400 30 0 0 0 ST:~0~=~combinational,~1~=~sequential Normal 0 C C
-T 0 0 400 30 0 0 0 VLS~≥~VH1~≥~(VH2,~VL2,~VCOM)~≥~VL1 Normal 0 C C
+T 0 0 -300 30 0 0 0 "CH: 0 = four levels, 1 = two levels" Normal 0 C C
+T 0 0 -400 30 0 0 0 "ST: 0 = combinational, 1 = sequential" Normal 0 C C
+T 0 0 400 30 0 0 0 "VLS ≥ VH1 ≥ (VH2, VL2, VCOM) ≥ VL1" Normal 0 C C
 S -750 750 750 -750 0 1 10 f
 X A1 1 -950 650 200 R 50 50 1 1 I
+X B5 10 -950 -250 200 R 50 50 1 1 I
+X A6 11 -950 -350 200 R 50 50 1 1 I
+X B6 12 -950 -450 200 R 50 50 1 1 I
+X A7 13 -950 -550 200 R 50 50 1 1 I
+X B7 14 -950 -650 200 R 50 50 1 1 I
+X DGND 15 300 -950 200 U 50 50 1 1 W
+X VL2 16 300 950 200 D 50 50 1 1 W
+X VL1 17 450 950 200 D 50 50 1 1 W
+X VCOM 18 150 950 200 D 50 50 1 1 W
+X OB7 19 950 -650 200 L 50 50 1 1 O
 X B1 2 -950 550 200 R 50 50 1 1 I
+X OA7 20 950 -550 200 L 50 50 1 1 O
+X OB6 21 950 -450 200 L 50 50 1 1 O
+X OA6 22 950 -350 200 L 50 50 1 1 O
+X OB5 23 950 -250 200 L 50 50 1 1 O
+X OA5 24 950 -150 200 L 50 50 1 1 O
+X OB4 25 950 -50 200 L 50 50 1 1 O
+X OA4 26 950 50 200 L 50 50 1 1 O
+X OB3 27 950 150 200 L 50 50 1 1 O
+X OA3 28 950 250 200 L 50 50 1 1 O
+X OB2 29 950 350 200 L 50 50 1 1 O
 X A2 3 -950 450 200 R 50 50 1 1 I
+X OA2 30 950 450 200 L 50 50 1 1 O
+X OB1 31 950 550 200 L 50 50 1 1 O
+X OA1 32 950 650 200 L 50 50 1 1 O
+X ST 33 -150 -950 200 U 50 50 1 1 I
+X VH1 34 -150 950 200 D 50 50 1 1 W
+X VH2 35 0 950 200 D 50 50 1 1 W
+X VLS 36 -300 950 200 D 50 50 1 1 W
+X AGND 37 150 -950 200 U 50 50 1 1 W
+X VCC 38 -450 950 200 D 50 50 1 1 W
+X EN 39 -450 -950 200 U 50 50 1 1 I
 X B2 4 -950 350 200 R 50 50 1 1 I
+X CH 40 -300 -950 200 U 50 50 1 1 I
+X EP 41 450 -950 200 U 50 50 1 1 W
 X A3 5 -950 250 200 R 50 50 1 1 I
 X B3 6 -950 150 200 R 50 50 1 1 I
 X A4 7 -950 50 200 R 50 50 1 1 I
 X B4 8 -950 -50 200 R 50 50 1 1 I
 X A5 9 -950 -150 200 R 50 50 1 1 I
-X B5 10 -950 -250 200 R 50 50 1 1 I
-X OA7 20 950 -550 200 L 50 50 1 1 O
-X OA2 30 950 450 200 L 50 50 1 1 O
-X CH 40 -300 -950 200 U 50 50 1 1 I
-X A6 11 -950 -350 200 R 50 50 1 1 I
-X OB6 21 950 -450 200 L 50 50 1 1 O
-X OB1 31 950 550 200 L 50 50 1 1 O
-X EP 41 450 -950 200 U 50 50 1 1 W
-X B6 12 -950 -450 200 R 50 50 1 1 I
-X OA6 22 950 -350 200 L 50 50 1 1 O
-X OA1 32 950 650 200 L 50 50 1 1 O
-X A7 13 -950 -550 200 R 50 50 1 1 I
-X OB5 23 950 -250 200 L 50 50 1 1 O
-X ST 33 -150 -950 200 U 50 50 1 1 I
-X B7 14 -950 -650 200 R 50 50 1 1 I
-X OA5 24 950 -150 200 L 50 50 1 1 O
-X VH1 34 -150 950 200 D 50 50 1 1 W
-X DGND 15 300 -950 200 U 50 50 1 1 W
-X OB4 25 950 -50 200 L 50 50 1 1 O
-X VH2 35 0 950 200 D 50 50 1 1 W
-X VL2 16 300 950 200 D 50 50 1 1 W
-X OA4 26 950 50 200 L 50 50 1 1 O
-X VLS 36 -300 950 200 D 50 50 1 1 W
-X VL1 17 450 950 200 D 50 50 1 1 W
-X OB3 27 950 150 200 L 50 50 1 1 O
-X AGND 37 150 -950 200 U 50 50 1 1 W
-X VCOM 18 150 950 200 D 50 50 1 1 W
-X OA3 28 950 250 200 L 50 50 1 1 O
-X VCC 38 -450 950 200 D 50 50 1 1 W
-X OB7 19 950 -650 200 L 50 50 1 1 O
-X OB2 29 950 350 200 L 50 50 1 1 O
-X EN 39 -450 -950 200 U 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# Si3421DV
+# library_Si3421DV
 #
-DEF Si3421DV Q 0 0 Y N 1 F N
+DEF library_Si3421DV Q 0 0 Y N 1 F N
 F0 "Q" 200 50 50 H V L CNN
-F1 "Si3421DV" 200 -50 50 H V L CNN
+F1 "library_Si3421DV" 200 -50 50 H V L CNN
 F2 "footprints:TSOP-6_2.9x1.5mm_Pitch0.95mm" 200 -150 50 H I L CNN
 F3 "http://www.vishay.com/docs/62921/si3421dv.pdf" 200 -250 50 H I L CNN
-F4 "Digi-Key" 200 -450 50 H I L CNN "Supplier1"
+F4 "Vishay Siliconix" 200 -350 50 H I L CNN "Manufacturer"
 F5 "SI3421DV-T1-GE3" 850 -350 50 H I L CNN "ManufacturerPartNumber"
-F6 "SI3421DV-T1-GE3CT-ND" 600 -450 50 H I L CNN "Supplier1PartNumber"
-F7 "Vishay Siliconix" 200 -350 50 H I L CNN "Manufacturer"
+F6 "Digi-Key" 200 -450 50 H I L CNN "Supplier1"
+F7 "SI3421DV-T1-GE3CT-ND" 600 -450 50 H I L CNN "Supplier1PartNumber"
 DRAW
 C 65 0 111 0 1 10 N
 C 100 -70 11 0 1 0 F
@@ -494,24 +397,99 @@ X D 6 100 200 100 D 50 50 1 1 P N
 ENDDRAW
 ENDDEF
 #
-# TSR2-2450
+# library_TSR2-2450
 #
-DEF TSR2-2450 U 0 40 Y Y 1 F N
+DEF library_TSR2-2450 U 0 40 Y Y 1 F N
 F0 "U" -300 250 60 H V L CNN
-F1 "TSR2-2450" 50 -250 60 H V L CNN
+F1 "library_TSR2-2450" 50 -250 60 H V L CNN
 F2 "footprints:Traco_TSR2" 50 -350 50 H I L CNN
 F3 "https://assets.tracopower.com/TSR2/documents/tsr2-datasheet.pdf" 50 -450 50 H I L CNN
-F4 "300-67-301" 450 -750 50 H I L CNN "Supplier2PartNumber"
-F5 "495-TSR2-2450" 350 -650 50 H I L CNN "Supplier1PartNumber"
-F6 "Distrelec" 50 -750 50 H I L CNN "Supplier2"
-F7 "Mouser" 50 -650 50 H I L CNN "Supplier1"
-F8 "Traco Power" 50 -550 50 H I L CNN "Manufacturer"
-F9 "TSR 2-2450" 550 -550 50 H I L CNN "ManufacturerPartNumber"
+F4 "Traco Power" 50 -550 50 H I L CNN "Manufacturer"
+F5 "TSR 2-2450" 550 -550 50 H I L CNN "ManufacturerPartNumber"
+F6 "Mouser" 50 -650 50 H I L CNN "Supplier1"
+F7 "495-TSR2-2450" 350 -650 50 H I L CNN "Supplier1PartNumber"
+F8 "Distrelec" 50 -750 50 H I L CNN "Supplier2"
+F9 "300-67-301" 450 -750 50 H I L CNN "Supplier2PartNumber"
 DRAW
 S -300 200 300 -150 0 1 10 f
 X +Vin 1 -500 100 200 R 50 50 1 1 W
 X GND 2 0 -350 200 U 50 50 1 1 W
 X +Vout 3 500 100 200 L 50 50 1 1 w
+ENDDRAW
+ENDDEF
+#
+# power_+12V
+#
+DEF power_+12V #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "power_+12V" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +12V 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power_+3V3
+#
+DEF power_+3V3 #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "power_+3V3" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+ALIAS +3.3V
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +3V3 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power_+5V
+#
+DEF power_+5V #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "power_+5V" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +5V 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power_+VDC
+#
+DEF power_+VDC #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -100 50 H I C CNN
+F1 "power_+VDC" 0 250 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+C 0 125 75 0 1 10 N
+P 2 0 1 20 -45 125 45 125 N
+P 2 0 1 0 0 0 0 50 N
+P 2 0 1 20 0 80 0 170 N
+X +VDC 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power_GND
+#
+DEF power_GND #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -250 50 H I C CNN
+F1 "power_GND" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
+X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #

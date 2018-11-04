@@ -10,7 +10,7 @@ Transform {
   scale 2.54 2.54 2.54
   children [
     Inline {
-      url "shapes3D/C_0805_HandSoldering.wrl"
+      url "shapes3D/C_0805.wrl"
     } ]
   }
 Transform {
@@ -19,7 +19,7 @@ Transform {
   scale 2.54 2.54 2.54
   children [
     Inline {
-      url "shapes3D/C_0805_HandSoldering.wrl"
+      url "shapes3D/C_0805.wrl"
     } ]
   }
 Transform {
@@ -28,7 +28,7 @@ Transform {
   scale 2.54 2.54 2.54
   children [
     Inline {
-      url "shapes3D/C_0805_HandSoldering.wrl"
+      url "shapes3D/C_0805.wrl"
     } ]
   }
 Transform {
@@ -37,7 +37,7 @@ Transform {
   scale 2.54 2.54 2.54
   children [
     Inline {
-      url "shapes3D/C_0805_HandSoldering.wrl"
+      url "shapes3D/C_0805.wrl"
     } ]
   }
 Transform {

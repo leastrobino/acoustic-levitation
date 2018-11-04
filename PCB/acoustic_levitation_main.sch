@@ -1,39 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:switches
-LIBS:relays
-LIBS:motors
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:library
+EESchema Schematic File Version 4
 LIBS:acoustic_levitation_main-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -110,12 +77,12 @@ Piezo_F[1..6]
 Text Label 4850 4850 0    60   ~ 0
 Enable
 $Comp
-L Conn_02x20_Odd_Even J1
+L Connector_Generic:Conn_02x20_Odd_Even J1
 U 1 1 5AAAB377
 P 2200 2050
 F 0 "J1" H 2250 3050 50  0000 C CNN
 F 1 "DE0-Nano-SoC: GPIO 0" H 2250 950 50  0000 C CNN
-F 2 "Socket_Strips:Socket_Strip_Straight_2x20_Pitch2.54mm" H 2200 2050 50  0001 C CNN
+F 2 "footprints:Socket_Strip_Straight_2x20_Pitch2.54mm" H 2200 2050 50  0001 C CNN
 F 3 "" H 2200 2050 50  0001 C CNN
 F 4 "Samtec Inc." H 2200 2050 60  0001 C CNN "Manufacturer"
 F 5 "SSW-120-03-G-D" H 2200 2050 60  0001 C CNN "ManufacturerPartNumber"
@@ -125,7 +92,7 @@ F 7 "SAM11959-ND" H 2200 2050 60  0001 C CNN "Supplier1PartNumber"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR01
+L power:GND #PWR01
 U 1 1 5AAAC302
 P 3300 2650
 F 0 "#PWR01" H 3300 2400 50  0001 C CNN
@@ -136,7 +103,7 @@ F 3 "" H 3300 2650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3V3 #PWR02
+L power:+3V3 #PWR02
 U 1 1 5AAAC4C5
 P 1200 2450
 F 0 "#PWR02" H 1200 2300 50  0001 C CNN
@@ -147,7 +114,7 @@ F 3 "" H 1200 2450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR03
+L power:+5V #PWR03
 U 1 1 5AAAC548
 P 1200 1550
 F 0 "#PWR03" H 1200 1400 50  0001 C CNN
@@ -158,7 +125,7 @@ F 3 "" H 1200 1550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR04
+L power:GND #PWR04
 U 1 1 5AAAC5A7
 P 3300 1750
 F 0 "#PWR04" H 3300 1500 50  0001 C CNN
@@ -169,12 +136,12 @@ F 3 "" H 3300 1750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Conn_02x20_Odd_Even J2
+L Connector_Generic:Conn_02x20_Odd_Even J2
 U 1 1 5AAAEB76
 P 2200 4450
 F 0 "J2" H 2250 5450 50  0000 C CNN
 F 1 "DE0-Nano-SoC: GPIO 1" H 2250 3350 50  0000 C CNN
-F 2 "Socket_Strips:Socket_Strip_Straight_2x20_Pitch2.54mm" H 2200 4450 50  0001 C CNN
+F 2 "footprints:Socket_Strip_Straight_2x20_Pitch2.54mm" H 2200 4450 50  0001 C CNN
 F 3 "" H 2200 4450 50  0001 C CNN
 F 4 "Samtec Inc." H 2200 4450 60  0001 C CNN "Manufacturer"
 F 5 "SSW-120-03-G-D" H 2200 4450 60  0001 C CNN "ManufacturerPartNumber"
@@ -184,7 +151,7 @@ F 7 "SAM11959-ND" H 2200 4450 60  0001 C CNN "Supplier1PartNumber"
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR05
+L power:GND #PWR05
 U 1 1 5AAAEB81
 P 3300 5050
 F 0 "#PWR05" H 3300 4800 50  0001 C CNN
@@ -195,7 +162,7 @@ F 3 "" H 3300 5050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +3V3 #PWR06
+L power:+3V3 #PWR06
 U 1 1 5AAAEB8B
 P 1200 4850
 F 0 "#PWR06" H 1200 4700 50  0001 C CNN
@@ -206,7 +173,7 @@ F 3 "" H 1200 4850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L +5V #PWR07
+L power:+5V #PWR07
 U 1 1 5AAAEB91
 P 1200 3950
 F 0 "#PWR07" H 1200 3800 50  0001 C CNN
@@ -217,7 +184,7 @@ F 3 "" H 1200 3950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR08
+L power:GND #PWR08
 U 1 1 5AAAEB97
 P 3300 4150
 F 0 "#PWR08" H 3300 3900 50  0001 C CNN
@@ -228,12 +195,12 @@ F 3 "" H 3300 4150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Conn_01x08 J3
+L Connector_Generic:Conn_01x08 J3
 U 1 1 5AAAF9DE
 P 1550 6250
 F 0 "J3" H 1550 6650 50  0000 C CNN
 F 1 "DE0-Nano-SoC: JP3" H 1600 5750 50  0000 R CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 1550 6250 50  0001 C CNN
+F 2 "footprints:Pin_Header_Straight_1x08_Pitch2.54mm" H 1550 6250 50  0001 C CNN
 F 3 "" H 1550 6250 50  0001 C CNN
 F 4 "Wurth Electronics Inc." H 1550 6250 60  0001 C CNN "Manufacturer"
 F 5 "61300811121" H 1550 6250 60  0001 C CNN "ManufacturerPartNumber"
@@ -245,12 +212,12 @@ F 9 "300-93-649" H 1550 6250 60  0001 C CNN "Supplier2PartNumber"
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Conn_01x10 J4
+L Connector_Generic:Conn_01x10 J4
 U 1 1 5AAAFB02
 P 3000 6350
 F 0 "J4" H 3000 6850 50  0000 C CNN
 F 1 "DE0-Nano-SoC: JP2" H 3050 5750 50  0000 R CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm" H 3000 6350 50  0001 C CNN
+F 2 "footprints:Pin_Header_Straight_1x10_Pitch2.54mm" H 3000 6350 50  0001 C CNN
 F 3 "" H 3000 6350 50  0001 C CNN
 F 4 "Wurth Electronics Inc." H 3000 6350 60  0001 C CNN "Manufacturer"
 F 5 "61301011121" H 3000 6350 60  0001 C CNN "ManufacturerPartNumber"
@@ -262,12 +229,12 @@ F 9 "300-93-651" H 3000 6350 60  0001 C CNN "Supplier2PartNumber"
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Conn_01x01 J5
+L Connector_Generic:Conn_01x01 J5
 U 1 1 5AAAFF13
 P 1550 7050
 F 0 "J5" H 1550 6950 50  0000 C CNN
 F 1 "DE0-Nano-SoC: JP5[3]" H 700 7150 50  0000 L CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x01_Pitch2.54mm" H 1550 7050 50  0001 C CNN
+F 2 "footprints:Pin_Header_Straight_1x01_Pitch2.54mm" H 1550 7050 50  0001 C CNN
 F 3 "" H 1550 7050 50  0001 C CNN
 F 4 "Wurth Electronics Inc." H 1550 7050 60  0001 C CNN "Manufacturer"
 F 5 "61300111121" H 1550 7050 60  0001 C CNN "ManufacturerPartNumber"
@@ -712,7 +679,7 @@ Wire Bus Line
 Wire Wire Line
 	5650 4850 4850 4850
 Wire Wire Line
-	5650 2150 5650 4850
+	5650 2150 5650 2650
 Wire Wire Line
 	5650 2150 5850 2150
 Wire Wire Line
@@ -871,7 +838,7 @@ Wire Wire Line
 Wire Wire Line
 	9300 2650 9100 2650
 Wire Wire Line
-	9100 2650 9100 4350
+	9100 2650 9100 3150
 Wire Wire Line
 	9100 4350 8300 4350
 Wire Wire Line
@@ -972,7 +939,7 @@ Wire Wire Line
 Wire Wire Line
 	3300 4050 2500 4050
 $Comp
-L GND #PWR09
+L power:GND #PWR09
 U 1 1 5AB78DB2
 P 4000 6350
 F 0 "#PWR09" H 4000 6100 50  0001 C CNN
@@ -988,4 +955,20 @@ Wire Wire Line
 	4000 6250 3200 6250
 Text Notes 3350 1150 0    60   ~ 0
 Piezo #
+Wire Wire Line
+	5650 2650 5650 3150
+Wire Wire Line
+	5650 3150 5650 3650
+Wire Wire Line
+	5650 3650 5650 4150
+Wire Wire Line
+	5650 4150 5650 4650
+Wire Wire Line
+	5650 4650 5650 4850
+Wire Wire Line
+	9100 3150 9100 3650
+Wire Wire Line
+	9100 3650 9100 4150
+Wire Wire Line
+	9100 4150 9100 4350
 $EndSCHEMATC

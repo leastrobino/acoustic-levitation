@@ -1,9 +1,9 @@
 (module Penguin_12.7mm (layer F.Cu) (tedit 5AC5EF7B)
   (fp_text reference G*** (at 0 -7.62) (layer F.SilkS) hide
-    (effects (font (thickness 0.3)))
+    (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_text value PENGUIN (at 0 7.62) (layer F.SilkS) hide
-    (effects (font (thickness 0.3)))
+    (effects (font (size 1 1) (thickness 0.15)))
   )
   (fp_poly (pts (xy 4.766417 -1.224995) (xy 4.778753 -1.218959) (xy 4.823219 -1.202682) (xy 4.878429 -1.190947)
     (xy 4.896618 -1.188829) (xy 4.95175 -1.178563) (xy 5.013927 -1.158656) (xy 5.073596 -1.133098)

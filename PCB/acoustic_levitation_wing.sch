@@ -1,36 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:library
+EESchema Schematic File Version 4
 LIBS:acoustic_levitation_wing-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -61,7 +31,7 @@ F2 "In[1..7]" I L 5600 4900 60
 F3 "Enable" I L 5600 5000 60 
 $EndSheet
 $Comp
-L Conn_02x09_Odd_Even J1
+L Connector_Generic:Conn_02x09_Odd_Even J1
 U 1 1 5AB0F29A
 P 5600 3150
 F 0 "J1" H 5650 3650 50  0000 C CNN
@@ -136,7 +106,7 @@ Wire Wire Line
 Wire Wire Line
 	5300 3550 5300 3650
 $Comp
-L GND #PWR01
+L power:GND #PWR01
 U 1 1 5AB0F821
 P 5300 3650
 F 0 "#PWR01" H 5300 3400 50  0001 C CNN
@@ -151,7 +121,7 @@ Wire Wire Line
 Text Label 4900 3450 0    60   ~ 0
 Enable
 $Comp
-L +12V #PWR02
+L power:+12V #PWR02
 U 1 1 5AB0F8BD
 P 6300 3450
 F 0 "#PWR02" H 6300 3300 50  0001 C CNN
@@ -162,7 +132,7 @@ F 3 "" H 6300 3450 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L +3V3 #PWR03
+L power:+3V3 #PWR03
 U 1 1 5AB0F918
 P 6300 3550
 F 0 "#PWR03" H 6300 3400 50  0001 C CNN

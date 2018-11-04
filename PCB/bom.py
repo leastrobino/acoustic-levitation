@@ -20,7 +20,7 @@
 
 # Import the KiCad python helper module and the csv formatter
 import sys
-sys.path.append("/Applications/KiCad.app/Contents/SharedSupport/plugins")
+sys.path.append("/Applications/KiCad/kicad.app/Contents/SharedSupport/plugins")
 import kicad_netlist_reader
 import csv
 
