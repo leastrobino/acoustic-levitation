@@ -3,8 +3,8 @@
 -- =========
 --
 -- Author       : Léa Strobino
--- Revision     : 1.0
--- Last updated : Thu, 19 Apr 2018 17:26:09 +0200
+-- Revision     : 1.1
+-- Last updated : Tue, 13 Nov 2018 20:40:08 +0100
 -------------------------------------------------------------------------------
 
 library IEEE;
@@ -13,16 +13,20 @@ use IEEE.numeric_std.all;
 
 entity piezo is
 
+  generic (
+    g_WIDTH : integer := 16  -- counter width
+  );
+
   port (
 
-    clk            : in  std_logic := '0';
-    reset_n        : in  std_logic := '0';
+    clk_i      : in  std_logic := '0';
+    reset_n_i  : in  std_logic := '0';
 
-    piezo_enable   : in  std_logic := '0';
-    piezo_sync     : in  std_logic := '0';
-    piezo_phase    : in  unsigned(15 downto 0) := to_unsigned(0,16);
-    piezo_duration : in  unsigned(15 downto 0) := to_unsigned(0,16);
-    piezo_out      : out std_logic
+    enable_i   : in  std_logic := '0';
+    sync_p1_i  : in  std_logic := '0';
+    phase_i    : in  unsigned(g_WIDTH-1 downto 0) := to_unsigned(0,g_WIDTH);
+    duration_i : in  unsigned(g_WIDTH-1 downto 0) := to_unsigned(0,g_WIDTH);
+    wave_o     : out std_logic
 
   );
 
@@ -30,44 +34,52 @@ end entity piezo;
 
 architecture rtl of piezo is
 
-  signal ctr0 : unsigned(15 downto 0);
-  signal ctr1 : unsigned(15 downto 0);
+  type t_state is (IDLE, COUNT);
+
+  signal s_state0, s_state1 : t_state;
+  signal s_ctr0_c, s_ctr1_c : unsigned(g_WIDTH-1 downto 0);
 
 begin
 
   -- Phase
-  process (clk, reset_n)
+  process (clk_i, reset_n_i)
   begin
 
-    if reset_n = '0' then
+    if reset_n_i = '0' then
 
-      ctr0      <= to_unsigned(0,16);
-      ctr1      <= to_unsigned(0,16);
-      piezo_out <= '0';
+      s_state0 <= IDLE;
+      s_state1 <= IDLE;
+      s_ctr0_c <= to_unsigned(0,s_ctr0_c'length);
+      s_ctr1_c <= to_unsigned(0,s_ctr1_c'length);
+      wave_o   <= '0';
 
-    elsif rising_edge(clk) then
+    elsif rising_edge(clk_i) then
 
-      ctr0      <= to_unsigned(0,16);
-      ctr1      <= to_unsigned(0,16);
-      piezo_out <= '0';
+      s_state0 <= IDLE;
+      s_state1 <= IDLE;
+      s_ctr0_c <= to_unsigned(0,s_ctr0_c'length);
+      s_ctr1_c <= to_unsigned(0,s_ctr1_c'length);
+      wave_o   <= '0';
 
-      if piezo_enable = '1' then
-        if piezo_sync = '1' then        -- Start signal generation.
-          ctr0 <= to_unsigned(1,16);
+      if enable_i = '1' then
+        if sync_p1_i = '1' then             -- Start signal generation.
+          s_state0 <= COUNT;
         end if;
-        if ctr0 > 0 then
-          if ctr0 <= piezo_phase then   -- Wait for "piezo_phase" cycles.
-            ctr0 <= ctr0+1;
-          else                          -- Set "piezo_out" high.
-            ctr1 <= to_unsigned(1,16);
-            piezo_out <= '1';
+        if s_state0 = COUNT then
+          if s_ctr0_c /= phase_i then       -- Wait for "phase_i" cycles.
+            s_state0 <= COUNT;
+            s_ctr0_c <= s_ctr0_c+1;
+          else                              -- Set "wave_o" high.
+            s_state1 <= COUNT;
+            wave_o   <= '1';
           end if;
         end if;
-        if ctr1 > 0 then
-          if ctr1 < piezo_duration then -- Wait for "piezo_duration" cycles.
-            ctr1 <= ctr1+1;
-            piezo_out <= '1';
-          end if;                       -- Set "piezo_out" low.
+        if s_state1 = COUNT then
+          if s_ctr1_c /= duration_i-1 then  -- Wait for "duration_i" cycles.
+            s_state1 <= COUNT;
+            s_ctr1_c <= s_ctr1_c+1;
+            wave_o   <= '1';
+          end if;                           -- Set "wave_o" low.
         end if;
       end if;
 

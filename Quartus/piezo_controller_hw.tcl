@@ -3,8 +3,8 @@
 # =======================
 #
 # Author       : Léa Strobino
-# Revision     : 1.0
-# Last updated : Wed, 18 Apr 2018 17:47:44 +0200
+# Revision     : 1.1
+# Last updated : Tue, 13 Nov 2018 20:40:08 +0100
 ###############################################################################
 
 
@@ -19,7 +19,7 @@ package require -exact qsys 16.1
 # 
 set_module_property DESCRIPTION ""
 set_module_property NAME piezo_controller
-set_module_property VERSION 1.0
+set_module_property VERSION 1.1
 set_module_property INTERNAL false
 set_module_property OPAQUE_ADDRESS_MAP true
 set_module_property AUTHOR "Léa Strobino"
@@ -32,8 +32,8 @@ set_module_property REPORT_HIERARCHY false
 set_module_property VALIDATION_CALLBACK validate
 
 proc validate {} {
-set_module_assignment embeddedsw.CMacro.FREQ [get_parameter_value clock_rate]
-set_module_assignment embeddedsw.CMacro.PIEZO_COUNT [get_parameter_value piezo_count]
+set_module_assignment embeddedsw.CMacro.FREQ [get_parameter_value CLOCK_RATE]
+set_module_assignment embeddedsw.CMacro.PIEZO_COUNT [get_parameter_value g_PIEZO_COUNT]
 }
 
 
@@ -51,17 +51,20 @@ add_fileset_file piezo.vhd VHDL PATH ../VHDL/piezo.vhd
 # 
 # parameters
 # 
-add_parameter clock_rate INTEGER
-set_parameter_property clock_rate DISPLAY_NAME "Clock frequency"
-set_parameter_property clock_rate SYSTEM_INFO_TYPE CLOCK_RATE
-set_parameter_property clock_rate SYSTEM_INFO_ARG clk
-add_parameter piezo_count INTEGER 120
-set_parameter_property piezo_count DEFAULT_VALUE 120
-set_parameter_property piezo_count DISPLAY_NAME "Piezo count"
-set_parameter_property piezo_count TYPE INTEGER
-set_parameter_property piezo_count UNITS None
-set_parameter_property piezo_count ALLOWED_RANGES 1:120
-set_parameter_property piezo_count HDL_PARAMETER true
+add_parameter CLOCK_RATE INTEGER 0
+set_parameter_property CLOCK_RATE DEFAULT_VALUE 0
+set_parameter_property CLOCK_RATE DISPLAY_NAME "Clock frequency"
+set_parameter_property CLOCK_RATE TYPE INTEGER
+set_parameter_property CLOCK_RATE UNITS None
+set_parameter_property CLOCK_RATE SYSTEM_INFO_TYPE CLOCK_RATE
+set_parameter_property CLOCK_RATE SYSTEM_INFO_ARG clk
+add_parameter g_PIEZO_COUNT INTEGER 120
+set_parameter_property g_PIEZO_COUNT DEFAULT_VALUE 120
+set_parameter_property g_PIEZO_COUNT DISPLAY_NAME "Piezo count"
+set_parameter_property g_PIEZO_COUNT TYPE INTEGER
+set_parameter_property g_PIEZO_COUNT UNITS None
+set_parameter_property g_PIEZO_COUNT ALLOWED_RANGES 1:120
+set_parameter_property g_PIEZO_COUNT HDL_PARAMETER true
 
 
 # 
@@ -86,7 +89,7 @@ set_interface_property clk PORT_NAME_MAP ""
 set_interface_property clk CMSIS_SVD_VARIABLES ""
 set_interface_property clk SVD_ADDRESS_GROUP ""
 
-add_interface_port clk clk clk Input 1
+add_interface_port clk clk_i clk Input 1
 
 
 # 
@@ -101,7 +104,7 @@ set_interface_property reset PORT_NAME_MAP ""
 set_interface_property reset CMSIS_SVD_VARIABLES ""
 set_interface_property reset SVD_ADDRESS_GROUP ""
 
-add_interface_port reset reset_n reset_n Input 1
+add_interface_port reset reset_n_i reset_n Input 1
 
 
 # 
@@ -130,11 +133,11 @@ set_interface_property s1 PORT_NAME_MAP ""
 set_interface_property s1 CMSIS_SVD_VARIABLES ""
 set_interface_property s1 SVD_ADDRESS_GROUP ""
 
-add_interface_port s1 AVS_Address address Input 8
-add_interface_port s1 AVS_Read read Input 1
-add_interface_port s1 AVS_ReadData readdata Output 16
-add_interface_port s1 AVS_Write write Input 1
-add_interface_port s1 AVS_WriteData writedata Input 16
+add_interface_port s1 AVS_Address_i address Input 8
+add_interface_port s1 AVS_Read_i read Input 1
+add_interface_port s1 AVS_ReadData_o readdata Output 16
+add_interface_port s1 AVS_Write_i write Input 1
+add_interface_port s1 AVS_WriteData_i writedata Input 16
 set_interface_assignment s1 embeddedsw.configuration.isFlash 0
 set_interface_assignment s1 embeddedsw.configuration.isMemoryDevice 0
 set_interface_assignment s1 embeddedsw.configuration.isNonVolatileStorage 0
@@ -142,45 +145,45 @@ set_interface_assignment s1 embeddedsw.configuration.isPrintableDevice 0
 
 
 # 
-# connection point piezo_out
+# connection point enable
 # 
-add_interface piezo_out conduit end
-set_interface_property piezo_out associatedClock clk
-set_interface_property piezo_out associatedReset reset
-set_interface_property piezo_out ENABLED true
-set_interface_property piezo_out EXPORT_OF ""
-set_interface_property piezo_out PORT_NAME_MAP ""
-set_interface_property piezo_out CMSIS_SVD_VARIABLES ""
-set_interface_property piezo_out SVD_ADDRESS_GROUP ""
+add_interface enable conduit end
+set_interface_property enable associatedClock clk
+set_interface_property enable associatedReset reset
+set_interface_property enable ENABLED true
+set_interface_property enable EXPORT_OF ""
+set_interface_property enable PORT_NAME_MAP ""
+set_interface_property enable CMSIS_SVD_VARIABLES ""
+set_interface_property enable SVD_ADDRESS_GROUP ""
 
-add_interface_port piezo_out piezo_out export Output piezo_count
-
-
-# 
-# connection point piezo_enable
-# 
-add_interface piezo_enable conduit end
-set_interface_property piezo_enable associatedClock clk
-set_interface_property piezo_enable associatedReset reset
-set_interface_property piezo_enable ENABLED true
-set_interface_property piezo_enable EXPORT_OF ""
-set_interface_property piezo_enable PORT_NAME_MAP ""
-set_interface_property piezo_enable CMSIS_SVD_VARIABLES ""
-set_interface_property piezo_enable SVD_ADDRESS_GROUP ""
-
-add_interface_port piezo_enable piezo_enable export Output 1
+add_interface_port enable enable_o export Output 1
 
 
 # 
-# connection point piezo_status
+# connection point status
 # 
-add_interface piezo_status conduit end
-set_interface_property piezo_status associatedClock clk
-set_interface_property piezo_status associatedReset reset
-set_interface_property piezo_status ENABLED true
-set_interface_property piezo_status EXPORT_OF ""
-set_interface_property piezo_status PORT_NAME_MAP ""
-set_interface_property piezo_status CMSIS_SVD_VARIABLES ""
-set_interface_property piezo_status SVD_ADDRESS_GROUP ""
+add_interface status conduit end
+set_interface_property status associatedClock clk
+set_interface_property status associatedReset reset
+set_interface_property status ENABLED true
+set_interface_property status EXPORT_OF ""
+set_interface_property status PORT_NAME_MAP ""
+set_interface_property status CMSIS_SVD_VARIABLES ""
+set_interface_property status SVD_ADDRESS_GROUP ""
 
-add_interface_port piezo_status piezo_status export Output 3
+add_interface_port status status_o export Output 3
+
+
+# 
+# connection point wave
+# 
+add_interface wave conduit end
+set_interface_property wave associatedClock clk
+set_interface_property wave associatedReset reset
+set_interface_property wave ENABLED true
+set_interface_property wave EXPORT_OF ""
+set_interface_property wave PORT_NAME_MAP ""
+set_interface_property wave CMSIS_SVD_VARIABLES ""
+set_interface_property wave SVD_ADDRESS_GROUP ""
+
+add_interface_port wave wave_o export Output g_PIEZO_COUNT

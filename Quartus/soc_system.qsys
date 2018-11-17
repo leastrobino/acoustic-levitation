@@ -25,28 +25,12 @@
          type = "int";
       }
    }
-   element fpga_key.s1
-   {
-      datum baseAddress
-      {
-         value = "544";
-         type = "String";
-      }
-   }
    element fpga_led
    {
       datum _sortIndex
       {
          value = "3";
          type = "int";
-      }
-   }
-   element fpga_led.s1
-   {
-      datum baseAddress
-      {
-         value = "512";
-         type = "String";
       }
    }
    element hps_0
@@ -63,14 +47,6 @@
       {
          value = "4";
          type = "int";
-      }
-   }
-   element piezo_controller_0.s1
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "String";
       }
    }
 }
@@ -96,35 +72,35 @@
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface
-   name="fpga_key_input"
+   name="fpga_key_i"
    internal="fpga_key.external_connection"
    type="conduit"
    dir="end" />
  <interface
-   name="fpga_led_output"
+   name="fpga_led_o"
    internal="fpga_led.external_connection"
    type="conduit"
    dir="end" />
+ <interface name="hps" internal="hps_0.hps_io" type="conduit" dir="end" />
  <interface name="hps_ddr" internal="hps_0.memory" type="conduit" dir="end" />
  <interface
    name="hps_h2f_loan_io"
    internal="hps_0.h2f_loan_io"
    type="conduit"
    dir="end" />
- <interface name="hps_io" internal="hps_0.hps_io" type="conduit" dir="end" />
  <interface
-   name="piezo_controller_piezo_enable"
-   internal="piezo_controller_0.piezo_enable"
+   name="piezo_enable_o"
+   internal="piezo_controller_0.enable"
    type="conduit"
    dir="end" />
  <interface
-   name="piezo_controller_piezo_out"
-   internal="piezo_controller_0.piezo_out"
+   name="piezo_status_o"
+   internal="piezo_controller_0.status"
    type="conduit"
    dir="end" />
  <interface
-   name="piezo_controller_piezo_status"
-   internal="piezo_controller_0.piezo_status"
+   name="piezo_wave_o"
+   internal="piezo_controller_0.wave"
    type="conduit"
    dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
@@ -630,7 +606,7 @@
   <parameter name="dbg_trace_clk_div" value="0" />
   <parameter name="desired_can0_clk_mhz" value="100.0" />
   <parameter name="desired_can1_clk_mhz" value="100.0" />
-  <parameter name="desired_cfg_clk_mhz" value="100.0" />
+  <parameter name="desired_cfg_clk_mhz" value="123.333333" />
   <parameter name="desired_emac0_clk_mhz" value="250.0" />
   <parameter name="desired_emac1_clk_mhz" value="250.0" />
   <parameter name="desired_gpio_db_clk_hz" value="32000" />
@@ -695,10 +671,10 @@
  <module
    name="piezo_controller_0"
    kind="piezo_controller"
-   version="1.0"
+   version="1.1"
    enabled="1">
-  <parameter name="clock_rate" value="50000000" />
-  <parameter name="piezo_count" value="89" />
+  <parameter name="CLOCK_RATE" value="50000000" />
+  <parameter name="g_PIEZO_COUNT" value="89" />
  </module>
  <connection
    kind="avalon"

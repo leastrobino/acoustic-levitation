@@ -3,8 +3,8 @@
 -- ====================
 --
 -- Author       : Léa Strobino
--- Revision     : 1.0
--- Last updated : Sun, 29 Apr 2018 16:08:31 +0200
+-- Revision     : 1.1
+-- Last updated : Tue, 13 Nov 2018 20:40:08 +0100
 -------------------------------------------------------------------------------
 
 library IEEE;
@@ -14,25 +14,25 @@ use IEEE.numeric_std.all;
 entity piezo_controller is
 
   generic (
-    piezo_count : integer := 120
+    g_PIEZO_COUNT : integer := 120
   );
 
   port (
 
-    clk           : in  std_logic := '0';
-    reset_n       : in  std_logic := '0';
+    clk_i           : in  std_logic := '0';
+    reset_n_i       : in  std_logic := '0';
 
     -- Avalon
-    AVS_Address   : in  std_logic_vector(7 downto 0)   := (others => '0');
-    AVS_Read      : in  std_logic                      := '0';
-    AVS_ReadData  : out std_logic_vector(15 downto 0);
-    AVS_Write     : in  std_logic                      := '0';
-    AVS_WriteData : in  std_logic_vector(15 downto 0)  := (others => '0');
+    AVS_Address_i   : in  std_logic_vector(7 downto 0)  := (others => '0');
+    AVS_Read_i      : in  std_logic := '0';
+    AVS_ReadData_o  : out std_logic_vector(15 downto 0);
+    AVS_Write_i     : in  std_logic := '0';
+    AVS_WriteData_i : in  std_logic_vector(15 downto 0) := (others => '0');
 
     -- Output signals
-    piezo_out     : out std_logic_vector(piezo_count-1 downto 0);
-    piezo_enable  : out std_logic;
-    piezo_status  : out std_logic_vector(2 downto 0)
+    enable_o        : out std_logic;
+    status_o        : out std_logic_vector(2 downto 0);
+    wave_o          : out std_logic_vector(g_PIEZO_COUNT-1 downto 0)
 
   );
 
@@ -40,88 +40,97 @@ end entity piezo_controller;
 
 architecture rtl of piezo_controller is
 
-  type unsigned_array is array(piezo_count-1 downto 0) of unsigned(15 downto 0);
+  type t_AB is (A, B);
+  type t_unsigned_array is array(g_PIEZO_COUNT-1 downto 0) of unsigned(15 downto 0);
 
   -- Registers
-  signal enable        : std_logic;
-  signal period        : unsigned(15 downto 0);
-  signal phase_A_count : unsigned(15 downto 0);
-  signal phase_B_count : unsigned(15 downto 0);
-  signal phase_A       : unsigned_array;
-  signal phase_B       : unsigned_array;
+  signal s_enable        : std_logic;
+  signal s_period        : unsigned(15 downto 0);
+  signal s_phase_A_count : unsigned(15 downto 0);
+  signal s_phase_B_count : unsigned(15 downto 0);
+  signal s_phase_A       : t_unsigned_array;
+  signal s_phase_B       : t_unsigned_array;
 
   -- Components
   component piezo is
+    generic (
+      g_WIDTH : integer
+    );
     port (
-      clk            : in std_logic;
-      reset_n        : in std_logic;
-      piezo_enable   : in std_logic;
-      piezo_sync     : in std_logic;
-      piezo_phase    : in unsigned(15 downto 0);
-      piezo_duration : in unsigned(15 downto 0);
-      piezo_out      : out std_logic
+      clk_i      : in  std_logic;
+      reset_n_i  : in  std_logic;
+      enable_i   : in  std_logic;
+      sync_p1_i  : in  std_logic;
+      phase_i    : in  unsigned(g_WIDTH-1 downto 0);
+      duration_i : in  unsigned(g_WIDTH-1 downto 0);
+      wave_o     : out std_logic
     );
   end component piezo;
 
-  signal ctr        : unsigned(15 downto 0);
-  signal sync       : unsigned(2 downto 0);
-  signal phase      : unsigned_array;
-  signal phase_nA_B : std_logic;
-  signal ctr_A_B    : unsigned(15 downto 0);
-  signal new_value  : std_logic;
+  signal s_ctr_c     : unsigned(15 downto 0);
+  signal s_ctr_AB_c  : unsigned(15 downto 0);
+  signal s_duration  : unsigned(15 downto 0);
+  signal s_new_value : std_logic;
+  signal s_phase     : t_unsigned_array;
+  signal s_phase_AB  : t_AB;
+  signal s_sync_p1   : unsigned(2 downto 0);
 
 begin
 
-  piezo_enable    <= enable;
-  piezo_status(0) <= sync(0);
-  piezo_status(1) <= phase_nA_B;
-  piezo_status(2) <= new_value;
+  enable_o    <= s_enable;
+  status_o(0) <= s_sync_p1(0);
+  status_o(1) <= '1' when s_phase_AB = B else '0';
+  status_o(2) <= s_new_value;
+  s_duration  <= s_period/2;
 
   -- Components
-  piezo_gen : for i in 0 to piezo_count-1 generate
-    piezo_inst : component piezo
+  gen_piezo : for i in 0 to g_PIEZO_COUNT-1 generate
+    cmp_piezo : component piezo
+    generic map (
+      g_WIDTH    => 16
+    )
     port map (
-      clk            => clk,
-      reset_n        => reset_n,
-      piezo_enable   => enable,
-      piezo_sync     => sync(0),
-      piezo_phase    => phase(i),
-      piezo_duration => period/2,
-      piezo_out      => piezo_out(i)
+      clk_i      => clk_i,
+      reset_n_i  => reset_n_i,
+      enable_i   => s_enable,
+      sync_p1_i  => s_sync_p1(0),
+      phase_i    => s_phase(i),
+      duration_i => s_duration,
+      wave_o     => wave_o(i)
     );
-  end generate piezo_gen;
+  end generate gen_piezo;
 
   -- Avalon read
-  process (clk, reset_n)
+  process (clk_i, reset_n_i)
   begin
 
-    if reset_n = '0' then
+    if reset_n_i = '0' then
 
-      AVS_ReadData <= (others => '0');
+      AVS_ReadData_o <= (others => '0');
 
-    elsif rising_edge(clk) then
+    elsif rising_edge(clk_i) then
 
-      AVS_ReadData <= (others => '0');
+      AVS_ReadData_o <= (others => '0');
 
-      if AVS_Read = '1' then
-        case AVS_Address is
+      if AVS_Read_i = '1' then
+        case AVS_Address_i is
 
-          when X"00" => AVS_ReadData(0) <= enable;
-          when X"01" => AVS_ReadData    <= std_logic_vector(period);
-          when X"02" => AVS_ReadData    <= std_logic_vector(phase_A_count);
-          when X"03" => AVS_ReadData    <= std_logic_vector(phase_B_count);
+          when X"00" => AVS_ReadData_o(0) <= s_enable;
+          when X"01" => AVS_ReadData_o    <= std_logic_vector(s_period);
+          when X"02" => AVS_ReadData_o    <= std_logic_vector(s_phase_A_count);
+          when X"03" => AVS_ReadData_o    <= std_logic_vector(s_phase_B_count);
 
           when others =>
 
-            for i in 0 to piezo_count-1 loop
-              if AVS_Address = std_logic_vector(to_unsigned(16#10#+i,8)) then
-                AVS_ReadData <= std_logic_vector(phase_A(i));
+            for i in 0 to g_PIEZO_COUNT-1 loop
+              if AVS_Address_i = std_logic_vector(to_unsigned(16#10#+i,8)) then
+                AVS_ReadData_o <= std_logic_vector(s_phase_A(i));
               end if;
             end loop;
 
-            for i in 0 to piezo_count-1 loop
-              if AVS_Address = std_logic_vector(to_unsigned(16#88#+i,8)) then
-                AVS_ReadData <= std_logic_vector(phase_B(i));
+            for i in 0 to g_PIEZO_COUNT-1 loop
+              if AVS_Address_i = std_logic_vector(to_unsigned(16#88#+i,8)) then
+                AVS_ReadData_o <= std_logic_vector(s_phase_B(i));
               end if;
             end loop;
 
@@ -133,59 +142,59 @@ begin
   end process;
 
   -- Avalon write
-  process (clk, reset_n)
+  process (clk_i, reset_n_i)
   begin
 
-    if reset_n = '0' then
+    if reset_n_i = '0' then
 
-      enable        <= '0';
-      period        <= to_unsigned(0,16);
-      phase_A_count <= to_unsigned(0,16);
-      phase_B_count <= to_unsigned(0,16);
-      phase_A       <= (others => to_unsigned(0,16));
-      phase_B       <= (others => to_unsigned(0,16));
-      new_value     <= '0';
+      s_enable        <= '0';
+      s_period        <= to_unsigned(0,16);
+      s_phase_A_count <= to_unsigned(0,16);
+      s_phase_B_count <= to_unsigned(0,16);
+      s_phase_A       <= (others => to_unsigned(0,16));
+      s_phase_B       <= (others => to_unsigned(0,16));
+      s_new_value     <= '0';
 
-    elsif rising_edge(clk) then
+    elsif rising_edge(clk_i) then
 
-      new_value <= '0';
+      s_new_value <= '0';
 
-      if AVS_Write = '1' then
-        case AVS_Address is
+      if AVS_Write_i = '1' then
+        case AVS_Address_i is
 
           when X"00" =>
 
-            if period > 1 then                           -- Ensure "enable" is low if "period" < 2.
-              enable <= AVS_WriteData(0);
+            if s_period > 1 then  -- Ensure s_enable is low if s_period < 2.
+              s_enable <= AVS_WriteData_i(0);
             else
-              enable <= '0';
+              s_enable <= '0';
             end if;
 
-          when X"01" => period        <= unsigned(AVS_WriteData);
-          when X"02" => phase_A_count <= unsigned(AVS_WriteData);
-          when X"03" => phase_B_count <= unsigned(AVS_WriteData);
+          when X"01" => s_period        <= unsigned(AVS_WriteData_i);
+          when X"02" => s_phase_A_count <= unsigned(AVS_WriteData_i);
+          when X"03" => s_phase_B_count <= unsigned(AVS_WriteData_i);
 
           when others =>
 
-            for i in 0 to piezo_count-1 loop
-              if AVS_Address = std_logic_vector(to_unsigned(16#10#+i,8)) then
-                if unsigned(AVS_WriteData) < period then -- Ensure "phase_A(i)" is in range 0.."period"-1.
-                  phase_A(i) <= unsigned(AVS_WriteData);
+            for i in 0 to g_PIEZO_COUNT-1 loop
+              if AVS_Address_i = std_logic_vector(to_unsigned(16#10#+i,8)) then
+                if unsigned(AVS_WriteData_i) < s_period then  -- Ensure s_phase_A(i) is in range 0..s_period-1.
+                  s_phase_A(i) <= unsigned(AVS_WriteData_i);
                 else
-                  phase_A(i) <= to_unsigned(0,16);
+                  s_phase_A(i) <= to_unsigned(0,16);
                 end if;
-                new_value  <= '1';
+                s_new_value <= '1';
               end if;
             end loop;
 
-            for i in 0 to piezo_count-1 loop
-              if AVS_Address = std_logic_vector(to_unsigned(16#88#+i,8)) then
-                if unsigned(AVS_WriteData) < period then -- Ensure "phase_B(i)" is in range 0.."period"-1.
-                  phase_B(i) <= unsigned(AVS_WriteData);
+            for i in 0 to g_PIEZO_COUNT-1 loop
+              if AVS_Address_i = std_logic_vector(to_unsigned(16#88#+i,8)) then
+                if unsigned(AVS_WriteData_i) < s_period then  -- Ensure s_phase_B(i) is in range 0..s_period-1.
+                  s_phase_B(i) <= unsigned(AVS_WriteData_i);
                 else
-                  phase_B(i) <= to_unsigned(0,16);
+                  s_phase_B(i) <= to_unsigned(0,16);
                 end if;
-                new_value  <= '1';
+                s_new_value <= '1';
               end if;
             end loop;
 
@@ -196,26 +205,26 @@ begin
 
   end process;
 
-  -- Sync signals: sync_{-i}
-  process (clk, reset_n)
+  -- Synchronization signals: s_sync_p1_{-i}
+  process (clk_i, reset_n_i)
   begin
 
-    if reset_n = '0' then
+    if reset_n_i = '0' then
 
-      ctr  <= to_unsigned(0,16);
-      sync <= (others => '0');
+      s_ctr_c   <= to_unsigned(0,16);
+      s_sync_p1 <= (others => '0');
 
-    elsif rising_edge(clk) then
+    elsif rising_edge(clk_i) then
 
-      ctr  <= to_unsigned(0,16);
-      sync <= (others => '0');
+      s_ctr_c   <= to_unsigned(0,16);
+      s_sync_p1 <= (others => '0');
 
-      if enable = '1' then
-        sync <= sync srl 1;
-        if ctr < period-1 then
-          ctr <= ctr+1;
+      if s_enable = '1' then
+        s_sync_p1 <= s_sync_p1 srl 1;
+        if s_ctr_c = s_period-1 then
+          s_sync_p1(s_sync_p1'length-1) <= '1';
         else
-          sync(sync'length-1) <= '1';
+          s_ctr_c <= s_ctr_c+1;
         end if;
       end if;
 
@@ -224,52 +233,52 @@ begin
   end process;
 
   -- Phase register in use
-  process (clk, reset_n)
+  process (clk_i, reset_n_i)
   begin
 
-    if reset_n = '0' then
+    if reset_n_i = '0' then
 
-      phase      <= phase_A;
-      phase_nA_B <= '0';
-      ctr_A_B    <= to_unsigned(0,16);
+      s_phase    <= s_phase_A;
+      s_phase_AB <= A;
+      s_ctr_AB_c <= to_unsigned(0,16);
 
-    elsif rising_edge(clk) then
+    elsif rising_edge(clk_i) then
 
-      if phase_B_count = 0 or enable = '0' then -- Use phase register A.
-        if sync(0) = '1' then
-          phase <= phase_A;
+      if s_phase_B_count = 0 or s_enable = '0' then   -- Use phase register A.
+        if s_sync_p1(0) = '1' or s_enable = '0' then
+          s_phase <= s_phase_A;
         end if;
-        phase_nA_B <= '0';
-        ctr_A_B    <= to_unsigned(0,16);
-      elsif phase_A_count = 0 then              -- Use phase register B.
-        if sync(0) = '1' then
-          phase <= phase_B;
+        s_phase_AB <= A;
+        s_ctr_AB_c <= to_unsigned(0,16);
+      elsif s_phase_A_count = 0 then                  -- Use phase register B.
+        if s_sync_p1(0) = '1' then
+          s_phase <= s_phase_B;
         end if;
-        phase_nA_B <= '1';
-        ctr_A_B    <= to_unsigned(0,16);
-      elsif phase_nA_B = '0' then
-        if sync(0) = '1' then
-          phase <= phase_A;
+        s_phase_AB <= B;
+        s_ctr_AB_c <= to_unsigned(0,16);
+      elsif s_phase_AB = A then
+        if s_sync_p1(0) = '1' then
+          s_phase <= s_phase_A;
         end if;
-        if ctr_A_B < phase_A_count then         -- Keep using phase register A.
-          if sync(2) = '1' then
-            ctr_A_B <= ctr_A_B+1;
+        if s_ctr_AB_c /= s_phase_A_count then         -- Keep using phase register A.
+          if s_sync_p1(2) = '1' then
+            s_ctr_AB_c <= s_ctr_AB_c+1;
           end if;
-        else                                    -- Switch to phase register B.
-          phase_nA_B <= '1';
-          ctr_A_B    <= to_unsigned(0,16);
+        else                                          -- Switch to phase register B.
+          s_phase_AB <= B;
+          s_ctr_AB_c <= to_unsigned(0,16);
         end if;
       else
-        if sync(0) = '1' then
-          phase <= phase_B;
+        if s_sync_p1(0) = '1' then
+          s_phase <= s_phase_B;
         end if;
-        if ctr_A_B < phase_B_count then         -- Keep using phase register B.
-          if sync(2) = '1' then
-            ctr_A_B <= ctr_A_B+1;
+        if s_ctr_AB_c /= s_phase_B_count then         -- Keep using phase register B.
+          if s_sync_p1(2) = '1' then
+            s_ctr_AB_c <= s_ctr_AB_c+1;
           end if;
-        else                                    -- Switch to phase register A.
-          phase_nA_B <= '0';
-          ctr_A_B    <= to_unsigned(0,16);
+        else                                          -- Switch to phase register A.
+          s_phase_AB <= A;
+          s_ctr_AB_c <= to_unsigned(0,16);
         end if;
       end if;
 
