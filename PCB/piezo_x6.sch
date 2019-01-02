@@ -8,9 +8,9 @@ Sheet 2 12
 Title "Acoustic levitation"
 Date "2018-03-24"
 Rev "1.0"
-Comp "Léa Strobino"
-Comment1 "Main PCB"
-Comment2 ""
+Comp "Main PCB"
+Comment1 "License: CERN OHL v1.2"
+Comment2 "Author: Léa Strobino"
 Comment3 ""
 Comment4 ""
 $EndDescr

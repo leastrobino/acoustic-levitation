@@ -4,6 +4,15 @@
  * Author       : Léa Strobino
  * Revision     : 1.0
  * Last updated : Sat, 02 Jun 2018 11:04:22 +0200
+ * 
+ * Copyright Léa Strobino, 2018
+ * Licensed under the CERN OHL v1.2
+ * 
+ * You may redistribute and modify this file under the terms of the CERN OHL
+ * v1.2. (http://ohwr.org/cernohl). This file is distributed WITHOUT ANY EXPRESS
+ * OR IMPLIED WARRANTY, INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE.
+ * Please see the CERN OHL v1.2 for applicable conditions.
  */
 
 #ifndef MAIN_H_

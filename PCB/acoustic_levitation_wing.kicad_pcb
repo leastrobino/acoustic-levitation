@@ -14,8 +14,9 @@
     (title "Acoustic levitation")
     (date 2018-04-11)
     (rev 1.0)
-    (company "Léa Strobino")
-    (comment 1 "Wing PCB")
+    (company "Wing PCB")
+    (comment 1 "License: CERN OHL v1.2")
+    (comment 2 "Author: Léa Strobino")
   )
 
   (layers

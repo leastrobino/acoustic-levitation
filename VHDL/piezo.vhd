@@ -1,11 +1,20 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- piezo.vhd
 -- =========
 --
 -- Author       : Léa Strobino
 -- Revision     : 1.1
 -- Last updated : Tue, 13 Nov 2018 20:40:08 +0100
--------------------------------------------------------------------------------
+--
+-- Copyright Léa Strobino, 2018
+-- Licensed under the CERN OHL v1.2
+--
+-- You may redistribute and modify this file under the terms of the CERN OHL
+-- v1.2. (http://ohwr.org/cernohl). This file is distributed WITHOUT ANY EXPRESS
+-- OR IMPLIED WARRANTY, INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY AND
+-- FITNESS FOR A PARTICULAR PURPOSE.
+-- Please see the CERN OHL v1.2 for applicable conditions.
+--------------------------------------------------------------------------------
 
 library IEEE;
 use IEEE.std_logic_1164.all;

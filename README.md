@@ -41,6 +41,10 @@ Toolpath:
 
 The PCBs were manufactured by [Eurocircuits](https://www.eurocircuits.com) (class 6D).
 
+## License
+
+This project is licensed under the [CERN OHL v1.2](LICENSE).
+
 ## References
 
 1. A. Marzo, S. A. Seah, B. W. Drinkwater, D. R. Sahoo, B. Long, and S. Subramanian, *Holographic acoustic elements for manipulation of levitated objects*, Nature Communications 6, 8661, 2015.  
